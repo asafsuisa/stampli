@@ -1,0 +1,23 @@
+<textarea [(ngModel)]="inputData"></textarea>
+<button (click)="loadData()">load data</button>
+
+<div class="cell" *ngFor="let row of arrayOfRows; let i = index">
+  <div class="cell" *ngFor="let col of arrayOfCols; let j = index">
+    <ng-container *ngFor="let el of drowersElements">
+      <ng-container *ngIf="el.col-1 === j && el.row-1 === i">
+        <ng-container [ngSwitch]="el.domType">
+          <label>{{el.label}}</label>
+          <div *ngSwitchCase="'TEXT_INPUT'">
+            <input [placeholder]="el.placeholder" />
+          </div>
+          <div *ngSwitchCase="'SELECT'">
+            <select>
+              <option *ngFor="let option of el.selectOptions">{{option}}</option>
+            </select>
+          </div>
+
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>
